@@ -3,6 +3,7 @@ package com.example.adcampaigns.service;
 import com.example.adcampaigns.model.Campaign;
 import com.example.adcampaigns.model.EmeraldAccount;
 import com.example.adcampaigns.repository.CampaignRepository;
+import com.example.adcampaigns.exception.InsufficientFundsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
