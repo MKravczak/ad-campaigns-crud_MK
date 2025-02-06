@@ -105,7 +105,21 @@ public class CampaignController {
     public List<String> getAvailableTowns() {
         return Arrays.asList(
             "Warszawa", "Kraków", "Łódź", "Wrocław", 
-            "Poznań", "Gdańsk", "Szczecin", "Katowice"
+            "Poznań", "Gdańsk", "Szczecin", "Katowice", "Lublin"
+        );
+    }
+
+    @GetMapping("/keywords")
+    public List<String> getPredefineKeywords() {
+        return Arrays.asList(
+            "promocja",
+            "wyprzedaż",
+            "nowości",
+            "okazje",
+            "prezenty",
+            "rabaty",
+            "sezonowe",
+            "limitowane"
         );
     }
 } 
