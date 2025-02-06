@@ -119,7 +119,8 @@ public class CampaignController {
             "prezenty",
             "rabaty",
             "sezonowe",
-            "limitowane"
+            "limitowane",
+            "hurtowe"
         );
     }
 } 
