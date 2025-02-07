@@ -1,12 +1,10 @@
 package com.example.adcampaigns.service;
 
-import com.example.adcampaigns.model.Campaign;
-import com.example.adcampaigns.model.EmeraldAccount;
-import com.example.adcampaigns.repository.CampaignRepository;
 import com.example.adcampaigns.exception.InsufficientFundsException;
+import com.example.adcampaigns.model.Campaign;
+import com.example.adcampaigns.repository.CampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -32,22 +30,20 @@ public class CampaignService {
         return campaignRepository.findById(id);
     }
 
-    @Transactional
     public Campaign saveCampaign(Campaign campaign) {
-        // Sprawdź dostępne środki
-        EmeraldAccount account = emeraldAccountService.getAccount();
-        if (account.getBalance().compareTo(campaign.getCampaignFund()) < 0) {
-            throw new InsufficientFundsException("Niewystarczające środki na koncie");
+        BigDecimal currentBalance = emeraldAccountService.getBalance();
+
+        if (currentBalance.compareTo(campaign.getCampaignFund()) < 0) {
+            throw new InsufficientFundsException("Brak wystarczających środków na kampanię");
         }
-        
-        // Odejmij środki
-        account.setBalance(account.getBalance().subtract(campaign.getCampaignFund()));
-        emeraldAccountService.saveAccount(account);
-        
+
+        // Odejmujemy środki z konta
+        emeraldAccountService.deductFunds(campaign.getCampaignFund());
+
         return campaignRepository.save(campaign);
     }
 
     public void deleteCampaign(Long id) {
         campaignRepository.deleteById(id);
     }
-} 
+}
