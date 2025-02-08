@@ -1,0 +1,169 @@
+<div class="campaign-details">
+  @if (campaign) {
+    <div class="header">
+      <h2>Campaign Details</h2>
+      <div class="actions">
+        @if (!isEditing) {
+          <button (click)="toggleEdit()" class="edit-button">Edit</button>
+          <button (click)="deleteCampaign()" class="delete-button">Delete</button>
+        }
+      </div>
+    </div>
+
+    @if (isEditing) {
+      <form (ngSubmit)="saveCampaign()">
+        <div class="form-group">
+          <label for="name">Campaign Name*</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="campaign.name"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Keywords*</label>
+          <div class="keywords-input">
+            <input
+              type="text"
+              [(ngModel)]="newKeyword"
+              name="newKeyword"
+              [ngModelOptions]="{standalone: true}"
+              list="keywordsList">
+            <button type="button" (click)="addKeyword()">Add</button>
+          </div>
+          <datalist id="keywordsList">
+            @for (keyword of availableKeywords; track keyword) {
+              <option [value]="keyword">
+                }
+          </datalist>
+          <div class="keywords-list">
+            @for (keyword of campaign.keywords; track keyword) {
+              <span class="keyword">
+                {{ keyword }}
+                <button type="button" (click)="removeKeyword(keyword)">&times;</button>
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bidAmount">Bid Amount*</label>
+          <input
+            type="number"
+            id="bidAmount"
+            name="bidAmount"
+            [(ngModel)]="campaign.bidAmount"
+            required
+            min="0"
+            step="0.01">
+        </div>
+
+        <div class="form-group">
+          <label for="campaignFund">Campaign Fund*</label>
+          <input
+            type="number"
+            id="campaignFund"
+            name="campaignFund"
+            [(ngModel)]="campaign.campaignFund"
+            required
+            min="0"
+            step="0.01">
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status*</label>
+          <select
+            id="status"
+            name="status"
+            [(ngModel)]="campaign.status"
+            required>
+            <option [ngValue]="true">On</option>
+            <option [ngValue]="false">Off</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="town">Town*</label>
+          <select
+            id="town"
+            name="town"
+            [(ngModel)]="campaign.town"
+            required>
+            @for (town of availableTowns; track town) {
+              <option [value]="town">{{ town }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="radius">Radius (km)*</label>
+          <input
+            type="number"
+            id="radius"
+            name="radius"
+            [(ngModel)]="campaign.radius"
+            required
+            min="0">
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="save-button">Save Changes</button>
+          <button type="button" (click)="toggleEdit()" class="cancel-button">Cancel</button>
+        </div>
+      </form>
+      <div class="success-message">
+
+      </div>
+    } @else {
+      <div class="details-view">
+        <div class="detail-item">
+          <label>Campaign Name:</label>
+          <span>{{ campaign.name }}</span>
+        </div>
+
+        <div class="detail-item">
+          <label>Keywords:</label>
+          <div class="keywords-list">
+            @for (keyword of campaign.keywords; track keyword) {
+              <span class="keyword">{{ keyword }}</span>
+            }
+          </div>
+        </div>
+
+        <div class="detail-item">
+          <label>Bid Amount:</label>
+          <span>${{ campaign.bidAmount.toFixed(2) }}</span>
+        </div>
+
+        <div class="detail-item">
+          <label>Campaign Fund:</label>
+          <span>${{ campaign.campaignFund.toFixed(2) }}</span>
+        </div>
+
+        <div class="detail-item">
+          <label>Status:</label>
+          <span [class.status-on]="campaign.status" [class.status-off]="!campaign.status">
+            {{ campaign.status ? 'On' : 'Off' }}
+          </span>
+        </div>
+
+        <div class="detail-item">
+          <label>Town:</label>
+          <span>{{ campaign.town }}</span>
+        </div>
+
+        <div class="detail-item">
+          <label>Radius:</label>
+          <span>{{ campaign.radius }} km</span>
+        </div>
+      </div>
+    }
+  } @else {
+    <p>Loading...</p>
+  }
+</div>
+<div class="success-message">
+
+</div>

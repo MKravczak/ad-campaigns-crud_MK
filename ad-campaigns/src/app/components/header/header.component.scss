@@ -1,0 +1,42 @@
+.header {
+  background-color: #111827; /* Zmieniono na kolor tła stopki */
+  color: #f9fafb; /* Zmieniono na kolor tekstu stopki */
+  padding: 1rem;
+
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    nav {
+      a {
+        color: #f9fafb; /* Zmieniono na kolor tekstu stopki */
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        margin-left: 1rem;
+        border-radius: 0.25rem;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #4f46e5; /* Zmieniono na kolor linku stopki */
+        }
+
+        &.active {
+          background-color: #4f46e5; /* Zmieniono na kolor linku stopki */
+        }
+      }
+    }
+  }
+}
+.header-content h1 {
+  cursor: pointer;
+}

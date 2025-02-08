@@ -1,0 +1,21 @@
+<div class="campaign-list">
+  <div class="header">
+    <h2>Campaigns</h2>
+    <a routerLink="/campaigns/create" class="create-button">Create Campaign</a>
+  </div>
+
+  <div class="campaigns-grid">
+    @for (campaign of campaigns; track campaign.id) {
+      <div class="campaign-card">
+        <h3>{{ campaign.name }}</h3>
+        <div class="keywords">
+          @for (keyword of campaign.keywords; track keyword) {
+            <span class="keyword">{{ keyword }}</span>
+          }
+        </div>
+        <p class="town">{{ campaign.town }}</p>
+        <a [routerLink]="['/campaigns', campaign.id]" class="details-button">Details</a>
+      </div>
+    }
+  </div>
+</div>
