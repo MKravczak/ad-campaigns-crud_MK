@@ -1,11 +1,33 @@
 import { Routes } from '@angular/router';
-import { provideRouter } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { CampaignsComponent } from './campaigns/campaigns.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'campaigns', component: CampaignsComponent }
+  {
+    path: 'campaigns',
+    loadComponent: () =>
+      import('./components/campaign-list/campaign-list.component')
+        .then(m => m.CampaignListComponent)
+  },
+  {
+    path: 'campaigns/create',
+    loadComponent: () =>
+      import('./components/campaign-create/campaign-create.component')
+        .then(m => m.CampaignCreateComponent)
+  },
+  {
+    path: 'campaigns/:id',
+    loadComponent: () =>
+      import('./components/campaign-details/campaign-details.component')
+        .then(m => m.CampaignDetailsComponent)
+  },
+  {
+    path: 'account',
+    loadComponent: () =>
+      import('./components/account-details/account-details.component')
+        .then(m => m.AccountDetailsComponent)
+  },
+  {
+    path: '',
+    redirectTo: '/campaigns',
+    pathMatch: 'full'
+  }
 ];
-
-export const appRouting = provideRouter(routes);

@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  standalone: true,
-  imports: [RouterModule, HeaderComponent],
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterModule, HeaderComponent,HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Futurum - zadanie programistyczne';
+  title = 'campaign-management';
 }

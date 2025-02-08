@@ -1,12 +1,12 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { appRouting } from './app/app.routes';
-import { importProvidersFrom } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(HttpClientModule),
-    appRouting
+    provideRouter(routes),
+    provideHttpClient()// Ważne! Rejestruje routing
   ]
 }).catch(err => console.error(err));
