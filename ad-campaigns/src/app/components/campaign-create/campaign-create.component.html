@@ -1,0 +1,86 @@
+
+<div class="campaign-create">
+  <!-- 📦 Formularz -->
+  <div class="campaign-form">
+    <h2 id="CreateC">Create Campaign</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Campaign Name*</label>
+        <input type="text" id="name" name="name" [(ngModel)]="campaign.name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Keywords*</label>
+        <div class="keywords-input">
+          <input type="text" [(ngModel)]="newKeyword" name="newKeyword" [ngModelOptions]="{standalone: true}" list="keywordsList">
+          <button type="button" (click)="addKeyword()">Add</button>
+        </div>
+        <datalist id="keywordsList">
+          <option *ngFor="let keyword of availableKeywords" [value]="keyword"></option>
+        </datalist>
+        <div class="keywords-list">
+          <span class="keyword" *ngFor="let keyword of campaign.keywords">
+            {{ keyword }}
+            <button type="button" (click)="removeKeyword(keyword)">&times;</button>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="bidAmount">Bid Amount*</label>
+        <input type="number" id="bidAmount" name="bidAmount" [(ngModel)]="campaign.bidAmount" required min="0" step="0.01">
+      </div>
+
+      <div class="form-group">
+        <label for="campaignFund">Campaign Fund*</label>
+        <input type="number" id="campaignFund" name="campaignFund" [(ngModel)]="campaign.campaignFund" required min="0" step="0.01">
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status*</label>
+        <select id="status" name="status" [(ngModel)]="campaign.status" required>
+          <option [ngValue]="true">On</option>
+          <option [ngValue]="false">Off</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="town">Town*</label>
+        <select id="town" name="town" [(ngModel)]="campaign.town" required>
+          <option *ngFor="let town of availableTowns" [value]="town">{{ town }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="radius">Radius (km)*</label>
+        <input type="number" id="radius" name="radius" [(ngModel)]="campaign.radius" required min="0">
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="save-button">Create Campaign</button>
+        <div class="success-popup" *ngIf="successMessage()">
+          {{ successMessage() }}
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- 💰 Portfel -->
+  <div class="wallet-container">
+    <div class="wallet">
+      <div class="wallet-fill" [style.height.%]="balancePercentage()"></div>
+    </div>
+    <p class="balance-text">Balance: $<span>{{ balance() | number:'1.2-2' }}</span></p>
+
+    <!-- Dodawanie środków -->
+    <div class="funds-form">
+      <h3 id="addF">Add Funds</h3>
+      <input type="number" [(ngModel)]="fundAmount" placeholder="Enter amount" min="1" class="funds-input">
+      <button (click)="addFunds()" [disabled]="!fundAmount || fundAmount <= 0" class="add-funds-button">
+        Add
+      </button>
+    </div>
+
+  </div>
+  <button class="back-button" (click)="goBack()" class="back-button">Back to Campaigns</button>
+</div>

@@ -1,0 +1,26 @@
+<div class="account-details">
+  <div class="card">
+    <!-- Portfel - Pionowy Owal -->
+    <div class="wallet-container">
+      <div class="wallet">
+        <div class="wallet-fill" [style.height.%]="balancePercentage()"></div>
+      </div>
+      <p class="balance-text">Balance: $<span>{{ balance() | number:'1.2-2' }}</span></p>
+    </div>
+
+    <!-- Formularz dodawania środków -->
+    <div class="funds-form">
+      <h1 id="Add">Add Funds</h1>
+      <input
+        type="number"
+        [(ngModel)]="fundAmount"
+        placeholder="Enter amount"
+        min="1"
+        class="funds-input"
+      />
+      <button (click)="addFunds()" [disabled]="!fundAmount || fundAmount <= 0" class="add-funds-button">
+        Add
+      </button>
+    </div>
+  </div>
+</div>

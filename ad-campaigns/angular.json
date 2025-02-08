@@ -20,6 +20,7 @@
             "outputPath": "dist/ad-campaigns",
             "index": "src/index.html",
             "browser": "src/main.ts",
+
             "polyfills": [
               "zone.js"
             ],
