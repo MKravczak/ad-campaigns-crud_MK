@@ -1,4 +1,35 @@
+version: '3.8'
+
 services:
+  # Usługa dla aplikacji Angular (frontend)
+  angular-app:
+    build:
+      context: ./ad-campaigns  # Katalog z aplikacją Angular
+      dockerfile: Dockerfile   # Nazwa Dockerfile dla frontendu
+    ports:
+      - "4200:4200"  # Mapowanie portów dla frontendu
+    depends_on:
+      - spring-boot-app  # Aplikacja Angular zależy od backendu
+    networks:
+      - app-network
+
+  # Usługa dla aplikacji Spring Boot (backend)
+  spring-boot-app:
+    build:
+      context: ./ad-campaigns-backend  # Katalog z aplikacją backendową
+      dockerfile: Dockerfile           # Nazwa Dockerfile dla backendu
+    ports:
+      - "8080:8080"  # Mapowanie portów dla backendu
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/campaigns
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=12345678
+    depends_on:
+      - postgres  # Aplikacja Spring Boot zależy od bazy danych PostgreSQL
+    networks:
+      - app-network
+
+  # Usługa dla bazy danych PostgreSQL
   postgres:
     image: postgres:latest
     environment:
@@ -9,6 +40,13 @@ services:
       - "5432:5432"
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+# Definicja wspólnej sieci
+networks:
+  app-network:
+    driver: bridge
 
 volumes:
   postgres_data:
