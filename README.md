@@ -9,7 +9,7 @@ Jest podzielona na <b>frontend</b> (Angular) oraz <b>backend</b> (Spring Boot).<
   <li>✅ Tworzenie i edycję kampanii reklamowych</li>
   <li>✅ Obsługę balansu użytkownika</li>
   <li>✅ Pobieranie dostępnych miast i słów kluczowych</li>
-  <li>✅ Obsługę zapytań HTTP do backendu</li>
+  <li>✅ Obsługę zapytań API do backendu</li>
 </ul>
 
 <h2>🛠️ Technologie</h2>
