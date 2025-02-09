@@ -8,7 +8,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-# Instalacja Mavena
+# Instalacja Maven
 RUN apt-get update && apt-get install -y maven
 
 # Budujemy aplikację z Mavenem (ale nie tworzymy pliku .jar)
