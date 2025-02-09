@@ -1,6 +1,6 @@
 .header {
-  background-color: #111827; /* Zmieniono na kolor tła stopki */
-  color: #f9fafb; /* Zmieniono na kolor tekstu stopki */
+  background-color: #111827;
+  color: #f9fafb;
   padding: 1rem;
 
 
@@ -19,7 +19,7 @@
 
     nav {
       a {
-        color: #f9fafb; /* Zmieniono na kolor tekstu stopki */
+        color: #f9fafb;
         text-decoration: none;
         padding: 0.5rem 1rem;
         margin-left: 1rem;
@@ -27,11 +27,11 @@
         transition: background-color 0.2s;
 
         &:hover {
-          background-color: #4f46e5; /* Zmieniono na kolor linku stopki */
+          background-color: #4f46e5;
         }
 
         &.active {
-          background-color: #4f46e5; /* Zmieniono na kolor linku stopki */
+          background-color: #4f46e5;
         }
       }
     }

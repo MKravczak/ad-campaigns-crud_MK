@@ -65,14 +65,14 @@
     </form>
   </div>
 
-  <!-- 💰 Portfel -->
+
   <div class="wallet-container">
     <div class="wallet">
       <div class="wallet-fill" [style.height.%]="balancePercentage()"></div>
     </div>
     <p class="balance-text">Balance: $<span>{{ balance() | number:'1.2-2' }}</span></p>
 
-    <!-- Dodawanie środków -->
+
     <div class="funds-form">
       <h3 id="addF">Add Funds</h3>
       <input type="number" [(ngModel)]="fundAmount" placeholder="Enter amount" min="1" class="funds-input">

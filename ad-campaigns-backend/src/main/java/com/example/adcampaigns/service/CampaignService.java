@@ -37,7 +37,7 @@ public class CampaignService {
             throw new InsufficientFundsException("Brak wystarczających środków na kampanię");
         }
 
-        // Odejmujemy środki z konta
+
         emeraldAccountService.deductFunds(campaign.getCampaignFund());
 
         return campaignRepository.save(campaign);

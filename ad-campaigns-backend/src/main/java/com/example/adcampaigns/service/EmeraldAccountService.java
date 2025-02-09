@@ -19,7 +19,7 @@ public class EmeraldAccountService {
         this.emeraldAccountRepository = emeraldAccountRepository;
     }
 
-    // ✅ Inicjalizacja konta przy starcie aplikacji
+
     @PostConstruct
     public void initializeAccount() {
         Optional<EmeraldAccount> account = emeraldAccountRepository.findById(1L);
