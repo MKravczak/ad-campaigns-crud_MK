@@ -113,6 +113,8 @@ npm run dev
 
 <p>Frontend powinien działać na:</p>
 👉 <b><a href="http://localhost:4200">http://localhost:4200</a></b>
+<h3>Powinna nam się na nim ukazać taka strona startowa</h3>
+<img src="ad-campaigns/home.png" alt="Home Screen" width="800">
 
 ---
 
